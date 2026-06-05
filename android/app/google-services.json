@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "957567592340",
+    "project_id": "school-11e17",
+    "storage_bucket": "school-11e17.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957567592340:android:a739e66ee70106f6c05181",
+        "android_client_info": {
+          "package_name": "com.dbs.ntpl"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeTGRfKUsfpBKFsoa1psb4CxlwyUP94So"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957567592340:android:7ff51cd6fa3785e5c05181",
+        "android_client_info": {
+          "package_name": "com.schoolmanagement.app.school_new"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeTGRfKUsfpBKFsoa1psb4CxlwyUP94So"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
