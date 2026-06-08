@@ -17,6 +17,7 @@ import '../core/constants/app_colors.dart';
 import '../core/theme/text_styles.dart';
 import '../screen/change_password.dart';
 import '../screen/deposite_screen.dart';
+import '../screen/feed_back.dart';
 import '../screen/fees_due.dart';
 import '../screen/homework.dart';
 import '../screen/language.dart';
@@ -490,6 +491,22 @@ class _DashboardState extends State<Dashboard> {
                                               );
                                             },
                                           ),
+                                        if (isCardVisible(vm, "Feedback"))
+                                          menuCard(
+                                            CupertinoIcons.doc_text,
+                                            AppStrings.get(
+                                                context,
+                                                'Feedback'),
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                  const FeedBack(),
+                                                ),
+                                              );
+                                            },
+                                          ),
                                       ],
                                     ),
 
@@ -551,30 +568,7 @@ class _DashboardState extends State<Dashboard> {
                                         }
 
                                         if (vm.classes.isEmpty) {
-                                          return Container(
-                                            width: double.infinity,
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 35,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              color:AppColors.background,
-                                              border: Border.all(
-                                                color: AppColors.primary,
-                                                width: 1.5,
-                                              ),
-                                              borderRadius: BorderRadius.circular(20),
-                                            ),
-                                            child: Center(
-                                              child: Text(
-                                                "No Data Available",
-                                                style: GoogleFonts.poppins(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                            ),
-                                          );
+                                          return const SizedBox.shrink();
                                         }
 
                                         return ListView.builder(
