@@ -15,7 +15,7 @@ class Event extends StatefulWidget {
 
 class _EventState extends State<Event> {
   DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
+  DateTime _selectedDay = DateTime.now();
 
   @override
   void initState() {
@@ -30,10 +30,7 @@ class _EventState extends State<Event> {
   Widget build(BuildContext context) {
     return Consumer<EventViewModel>(
         builder: (context, vm, child) {
-          final selectedEvents = _selectedDay == null
-              ? []
-              : vm.getEventsForDay(_selectedDay!);
-
+          final selectedEvents = vm.getEventsForDay(_selectedDay);
           return Scaffold(
             appBar: AppBar(
               backgroundColor: AppColors.primary,
@@ -76,7 +73,7 @@ class _EventState extends State<Event> {
                       shape: BoxShape.circle,
                     ),
                     selectedDecoration: const BoxDecoration(
-                      color: Colors.orange,
+                      color: Colors.purple,
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -90,9 +87,7 @@ class _EventState extends State<Event> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        _selectedDay == null
-                            ? "Selected Date"
-                            : "Selected Date: ${_selectedDay!.day}/${_selectedDay!.month}/${_selectedDay!.year}",
+                        "Selected Date: ${_selectedDay.day}/${_selectedDay.month}/${_selectedDay.year}",
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -101,7 +96,9 @@ class _EventState extends State<Event> {
 
                       const SizedBox(height: 10),
 
-                      if (selectedEvents.isNotEmpty)
+                      if (vm.isLoading)
+                        const CircularProgressIndicator()
+                      else if (selectedEvents.isNotEmpty)
                         Text(
                           selectedEvents.first.eventTitle,
                           style: const TextStyle(
