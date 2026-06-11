@@ -4,6 +4,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:school_new/AppManager/ViewModel/EventVM/event_vm.dart';
+import 'package:school_new/AppManager/ViewModel/FeedbackVM/feedback_vm.dart';
 import 'package:school_new/screen/widgets/language_provider.dart';
 import 'package:school_new/screen/widgets/myhttoverrides.dart';
 import 'package:school_new/widget/splash_screen.dart';
@@ -13,7 +15,6 @@ import 'AppManager/ViewModel/AccountVM/student_details_view_model.dart';
 import 'AppManager/ViewModel/AttendanceVM/attendance_vm.dart';
 import 'AppManager/ViewModel/AttendanceVM/student_attendance_vm.dart';
 import 'AppManager/ViewModel/DashboardVM/dashboard_vm.dart';
-import 'AppManager/ViewModel/EventVM/event_vm.dart';
 import 'AppManager/ViewModel/FeesVM/get_student_fee_view_model.dart';
 import 'AppManager/ViewModel/FeesVM/save_fee_view_model.dart';
 import 'AppManager/ViewModel/HomeWorkVM/hw_viewm.dart';
@@ -62,7 +63,8 @@ void main() async {
         ChangeNotifierProvider(create: (_) => HwViewModel(),),
         ChangeNotifierProvider(create: (_) => UpcomingClassesVM(),),
         ChangeNotifierProvider(create: (_) => DashboardVM(),),
-        ChangeNotifierProvider(create: (_) => EventViewModel(),),
+        ChangeNotifierProvider(create: (_)=> EventViewModel()),
+        ChangeNotifierProvider(create: (_) =>FeedbackViewModel()),
         ChangeNotifierProvider(create: (_) => LanguageProvider()..loadLanguage(),),
       ],
       child: const MyApp(),
