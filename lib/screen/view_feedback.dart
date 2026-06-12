@@ -65,117 +65,136 @@ class _ViewFeedbackState extends State<ViewFeedback> {
                 child: Text("No Feedback Found"),
               );
             }
-
+        
             return ListView.builder(
               padding: const EdgeInsets.all(16),
               itemCount: vm.feedbackList.length,
               itemBuilder: (context, index) {
-
+        
                 final feedback =
                 vm.feedbackList[index];
 
-                return Card(
-                color: AppColors.background,
-                  elevation: 2,
-                  margin:
-                  const EdgeInsets.only(bottom: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                    BorderRadius.circular(12),
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(18),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withValues(alpha: 0.15),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
                   ),
-                  child: Padding(
-                    padding:
-                    const EdgeInsets.all(12),
-                    child: Column(
-                      crossAxisAlignment:
-                      CrossAxisAlignment.start,
-
-                      children: [
-                        // Row(
-                        //   children: [
-                        //     Expanded(
-                        //       child: Text(
-                        //         "ID : ${feedback.id}",
-                        //         style: GoogleFonts.poppins(
-                        //           fontSize: 13,
-                        //           fontWeight: FontWeight.w600,
-                        //           color: AppColors.primary,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //     Text(
-                        //       "Student ID : ${feedback.studentId}",
-                        //       style: GoogleFonts.poppins(
-                        //         fontSize: 13,
-                        //         fontWeight: FontWeight.w600,
-                        //         color: AppColors.primary,
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-
-                        const SizedBox(height: 8),
-                        Text(
-                          feedback.title,
-                          style:
-                          GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight:
-                            FontWeight.w600,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      /// Student Id
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.person_outline,
+                            size: 18,
+                            color: AppColors.primary,
                           ),
-                        ),
-
-                        const SizedBox(height: 8),
-
-                        Text(
-                          feedback.description,
-                          style:
-                          GoogleFonts.poppins(
-                            fontSize: 14,
-                          ),
-                        ),
-
-                        const SizedBox(height: 10),
-
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.calendar_today,
-                              size: 14,
-                              color: Colors.grey,
+                          const SizedBox(width: 6),
+                          Text(
+                            "Student ID : ${feedback.studentId}",
+                            style: GoogleFonts.poppins(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 13,
                             ),
-                            const SizedBox(width: 5),
-                            Expanded(
-                              child: Text(
-                                feedback.createdDate,
-                                style:
-                                GoogleFonts.poppins(
-                                  fontSize: 12,
-                                  color: Colors.grey,
+                          ),
+                        ],
+                      ),
+
+                      const SizedBox(height: 14),
+
+                      /// Title
+                      Text(
+                        feedback.title,
+                        style: GoogleFonts.poppins(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      /// Description
+                      Text(
+                        feedback.description,
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          color: Colors.black87,
+                          height: 1.4,
+                        ),
+                      ),
+
+                      const SizedBox(height: 14),
+
+                      Divider(
+                        color: Colors.grey.shade300,
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      /// Date
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.access_time,
+                            size: 16,
+                            color: Colors.grey,
+                          ),
+                          const SizedBox(width: 6),
+                          Expanded(
+                            child: Text(
+                              feedback.createdDate,
+                              style: GoogleFonts.poppins(
+                                fontSize: 12,
+                                color: Colors.grey.shade600,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      /// Remark
+                      if (feedback.remark != null &&
+                          feedback.remark!.isNotEmpty)
+                        Container(
+                          margin: const EdgeInsets.only(top: 12),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: Colors.green.shade50,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                            children: [
+                              const Icon(
+                                Icons.chat_bubble_outline,
+                                color: Colors.green,
+                                size: 18,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  feedback.remark!,
+                                  style: GoogleFonts.poppins(
+                                    color: Colors.green.shade800,
+                                    fontSize: 13,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-
-                        if (feedback.remark != null)
-                          Padding(
-                            padding:
-                            const EdgeInsets.only(
-                                top: 8),
-                            child: Text(
-                              "Remark : ${feedback.remark}",
-                              style:
-                              GoogleFonts.poppins(
-                                color:
-                                Colors.green,
-                                fontWeight:
-                                FontWeight.w500,
-                              ),
-                            ),
+                            ],
                           ),
-                      ],
-                    ),
+                        ),
+                    ],
                   ),
                 );
               },
