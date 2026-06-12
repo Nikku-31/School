@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:school_new/screen/view_feedback.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../AppManager/ViewModel/FeedbackVM/feedback_vm.dart';
 import '../core/constants/app_colors.dart';
@@ -99,16 +101,20 @@ class _FeedBackState extends State<FeedBack> {
                         if (!_formKey.currentState!.validate()) {
                           return;
                         }
+                        final prefs = await SharedPreferences.getInstance();
+                        print("All Keys => ${prefs.getKeys()}");
+                        for (var key in prefs.getKeys()) {
+                          print("$key => ${prefs.get(key)}");
+                        }
+                        int studentId = prefs.getInt("user_id") ?? 0;
+                        debugPrint("Student Id => $studentId");
+                        debugPrint("Title => ${titleController.text}");
+                        debugPrint("Description => ${descriptionController.text}");
 
-                        /// Dynamic Student Id
-                        int studentId = 47;
-
-                        bool success =
-                        await vm.submitFeedback(
+                        bool success = await vm.submitFeedback(
                           studentId: studentId,
                           title: titleController.text.trim(),
-                          description:
-                          descriptionController.text.trim(),
+                          description: descriptionController.text.trim(),
                         );
 
                         if (success) {
@@ -123,8 +129,7 @@ class _FeedBackState extends State<FeedBack> {
                           titleController.clear();
                           descriptionController.clear();
                         } else {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(
+                          ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content:
                               Text("Something went wrong"),
@@ -140,6 +145,41 @@ class _FeedBackState extends State<FeedBack> {
                         "Submit Feedback",
                         style: GoogleFonts.poppins(
                           color: AppColors.background,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  //view Feedback
+                  const SizedBox(height: 12),
+
+                  SizedBox(
+                    width: double.infinity,
+                    height: 55,
+                    child: OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(
+                          color: AppColors.primary,
+                          width: 1.5,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      onPressed: () async {
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const ViewFeedback(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "View Feedback",
+                        style: GoogleFonts.poppins(
+                          color: AppColors.primary,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),
