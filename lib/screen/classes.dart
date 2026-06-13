@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../AppManager/ViewModel/AccountVM/student_details_view_model.dart';
 import '../AppManager/ViewModel/HomeWorkVM/upcoming_classes_vm.dart';
 import '../core/constants/app_colors.dart';
+import '../core/constants/app_strings.dart';
 
 class ClassesScreen extends StatefulWidget {
   const ClassesScreen({super.key});
@@ -14,7 +15,14 @@ class ClassesScreen extends StatefulWidget {
 
 class _ClassesScreenState extends State<ClassesScreen> {
 
-  final days = ["MON","TUE","WED","THU","FRI","SAT"];
+  late final days = [
+    AppStrings.get(context, "monday"),
+    AppStrings.get(context, "tuesday"),
+    AppStrings.get(context, "wednesday"),
+    AppStrings.get(context, "thursday"),
+    AppStrings.get(context, "friday"),
+    AppStrings.get(context, "saturday"),
+  ];
   int selectedDay = 0;
   @override
   void initState() {
@@ -78,7 +86,7 @@ class _ClassesScreenState extends State<ClassesScreen> {
                       const SizedBox(width: 10),
 
                       Text(
-                        "My Classes",
+                        AppStrings.get(context, "my_classes"),
                         style: GoogleFonts.poppins(
                           fontSize: 24,
                           fontWeight: FontWeight.w700,
@@ -206,8 +214,8 @@ class _ClassesScreenState extends State<ClassesScreen> {
                         ),
 
                         child: Center(
-                          child: Text(
-                            "No Data Available",
+                          child:Text(
+                            AppStrings.get(context, "no_data_available"),
 
                             style:
                             GoogleFonts

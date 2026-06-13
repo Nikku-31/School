@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../AppManager/ViewModel/FeedbackVM/feedback_vm.dart';
 import '../core/constants/app_colors.dart';
+import '../core/constants/app_strings.dart';
 
 class FeedBack extends StatefulWidget {
   const FeedBack({super.key});
@@ -31,7 +32,7 @@ class _FeedBackState extends State<FeedBack> {
           color: AppColors.background,
         ),
         title: Text(
-          "Feedback",
+          AppStrings.get(context, "feedback"),
           style: GoogleFonts.poppins(
             color: AppColors.background,
             fontWeight: FontWeight.w600,
@@ -50,14 +51,14 @@ class _FeedBackState extends State<FeedBack> {
                   TextFormField(
                     controller: titleController,
                     decoration: InputDecoration(
-                      labelText: "Title",
+                      labelText: AppStrings.get(context, "title"),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return "Please enter title";
+                        return AppStrings.get(context, "enter_title");
                       }
                       return null;
                     },
@@ -69,7 +70,7 @@ class _FeedBackState extends State<FeedBack> {
                     controller: descriptionController,
                     maxLines: 5,
                     decoration: InputDecoration(
-                      labelText: "Description",
+                      labelText: AppStrings.get(context, "description"),
                       alignLabelWithHint: true,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -77,7 +78,7 @@ class _FeedBackState extends State<FeedBack> {
                     ),
                     validator: (value) {
                       if (value == null || value.trim().isEmpty) {
-                        return "Please enter description";
+                        return AppStrings.get(context, "enter_description");
                       }
                       return null;
                     },
@@ -120,9 +121,10 @@ class _FeedBackState extends State<FeedBack> {
                         if (success) {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(
-                            const SnackBar(
+                            SnackBar(
                               content: Text(
-                                  "Feedback Submitted Successfully"),
+                                AppStrings.get(context, "feedback_success"),
+                              ),
                             ),
                           );
 
@@ -130,9 +132,10 @@ class _FeedBackState extends State<FeedBack> {
                           descriptionController.clear();
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content:
-                              Text("Something went wrong"),
+                            SnackBar(
+                              content: Text(
+                                AppStrings.get(context, "something_went_wrong"),
+                              ),
                             ),
                           );
                         }
@@ -142,7 +145,7 @@ class _FeedBackState extends State<FeedBack> {
                         color: AppColors.background,
                       )
                           : Text(
-                        "Submit Feedback",
+                        AppStrings.get(context, "submit_feedback"),
                         style: GoogleFonts.poppins(
                           color: AppColors.background,
                           fontSize: 16,
@@ -177,7 +180,7 @@ class _FeedBackState extends State<FeedBack> {
                         );
                       },
                       child: Text(
-                        "View Feedback",
+                        AppStrings.get(context, "view_feedback"),
                         style: GoogleFonts.poppins(
                           color: AppColors.primary,
                           fontSize: 16,

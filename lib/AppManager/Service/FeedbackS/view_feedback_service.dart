@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../../../core/constants/api_constants.dart';
 import '../../Model/FeedbackM/view_feedback_model.dart';
 
 class ViewFeedbackService {
@@ -9,7 +10,7 @@ class ViewFeedbackService {
     try {
       final response = await http.get(
         Uri.parse(
-          "https://dbs.online-tech.in/api/StudentApi/ViewFeedback?stdId=$studentId",
+          "${ApiConstants.ViewFeedback}?stdId=$studentId",
         ),
       );
 

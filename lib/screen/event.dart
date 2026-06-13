@@ -5,6 +5,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../AppManager/ViewModel/EventVM/event_vm.dart';
 import '../core/constants/app_colors.dart';
+import '../core/constants/app_strings.dart';
 
 class Event extends StatefulWidget {
   const Event({super.key});
@@ -36,7 +37,7 @@ class _EventState extends State<Event> {
               backgroundColor: AppColors.primary,
               iconTheme: IconThemeData(color: AppColors.background),
               title: Text(
-                "Event",
+                AppStrings.get(context, "event"),
                 style: GoogleFonts.poppins(color: AppColors.background),
               ),
             ),
@@ -87,7 +88,8 @@ class _EventState extends State<Event> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Selected Date: ${_selectedDay.day}/${_selectedDay.month}/${_selectedDay.year}",
+                        "${AppStrings.get(context, "selected_date")}: "
+                            "${_selectedDay.day}/${_selectedDay.month}/${_selectedDay.year}",
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -108,7 +110,9 @@ class _EventState extends State<Event> {
                           ),
                         )
                       else
-                        const Text("No Events"),
+                        Text(
+                          AppStrings.get(context, "no_events"),
+                        ),
                     ],
                   ),
                 ),

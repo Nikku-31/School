@@ -251,32 +251,34 @@ class _DashboardState extends State<Dashboard> {
                               builder: (context, vm, child) {
                                 final student = vm.student;
 
-                                return CircleAvatar(
-                                  radius: 35,
-                                  backgroundColor: Colors.white,
+                                return Container(
+                                  width: 70,
+                                  height: 70,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.white,
+                                    border: Border.all(color: Colors.white, width: 2),
+                                  ),
                                   child: ClipOval(
                                     child: vm.profileImage != null
-                                        ? Image.file(
-                                      vm.profileImage!,
-                                      width: 70,
-                                      height: 70,
-                                      fit: BoxFit.cover,
+                                        ? FittedBox(
+                                      fit: BoxFit.contain,
+                                      child: Image.file(vm.profileImage!),
                                     )
                                         : (student != null &&
                                         student.studentPhoto.isNotEmpty)
-                                        ? Image.network(
-                                      "https://dbs.online-tech.in${student.studentPhoto}",
-                                      width: 70,
-                                      height: 70,
-
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (context, error, stackTrace) {
-                                        return const Icon(
-                                          Icons.person_outline,
-                                          size: 40,
-                                          color: AppColors.primary,
-                                        );
-                                      },
+                                        ? FittedBox(
+                                      fit: BoxFit.contain,
+                                      child: Image.network(
+                                        "https://dbs.online-tech.in${student.studentPhoto}",
+                                        errorBuilder: (context, error, stackTrace) {
+                                          return const Icon(
+                                            Icons.person_outline,
+                                            size: 40,
+                                            color: AppColors.primary,
+                                          );
+                                        },
+                                      ),
                                     )
                                         : const Icon(
                                       Icons.person_outline,
@@ -494,9 +496,7 @@ class _DashboardState extends State<Dashboard> {
                                         if (isCardVisible(vm, "Feedback"))
                                           menuCard(
                                             CupertinoIcons.doc_text,
-                                            AppStrings.get(
-                                                context,
-                                                'Feedback'),
+                                AppStrings.get(context, 'feedback'),
                                             onTap: () {
                                               Navigator.push(
                                                 context,
@@ -525,7 +525,7 @@ class _DashboardState extends State<Dashboard> {
                                         const SizedBox(width: 10),
 
                                         Text(
-                                          "Upcoming Classes",
+                                          AppStrings.get(context, 'upcoming_classes'),
                                           style: GoogleFonts.poppins(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600,
@@ -544,7 +544,7 @@ class _DashboardState extends State<Dashboard> {
                                             );
                                           },
                                           child: Text(
-                                            "View all",
+                                            AppStrings.get(context, 'view_all'),
                                             style: GoogleFonts.poppins(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w500,
@@ -854,10 +854,10 @@ class _DashboardState extends State<Dashboard> {
             _selectedIndex = index;
           });
         },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.bell), label: "Notification"),
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.person), label: "Profile"),
+        items: [
+          BottomNavigationBarItem(icon: const Icon(CupertinoIcons.home), label:  AppStrings.get(context, 'home'),),
+          BottomNavigationBarItem(icon: const Icon(CupertinoIcons.bell), label:  AppStrings.get(context, 'notification')),
+          BottomNavigationBarItem(icon: const Icon(CupertinoIcons.person), label: AppStrings.get(context, 'profile')),
         ],
       ),
     );

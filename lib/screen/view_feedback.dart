@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../AppManager/ViewModel/FeedbackVM/view_feedback_vm.dart';
 import '../core/constants/app_colors.dart';
+import '../core/constants/app_strings.dart';
 
 class ViewFeedback extends StatefulWidget {
   const ViewFeedback({super.key});
@@ -43,7 +44,7 @@ class _ViewFeedbackState extends State<ViewFeedback> {
           color: AppColors.background,
         ),
         title: Text(
-          "View Feedback",
+          AppStrings.get(context, "view_feedback"),
           style: GoogleFonts.poppins(
             color: AppColors.background,
             fontWeight: FontWeight.w600,
@@ -61,8 +62,10 @@ class _ViewFeedbackState extends State<ViewFeedback> {
             }
         
             if (vm.feedbackList.isEmpty) {
-              return const Center(
-                child: Text("No Feedback Found"),
+              return Center(
+                child: Text(
+                  AppStrings.get(context, "no_feedback_found"),
+                ),
               );
             }
         
@@ -101,7 +104,7 @@ class _ViewFeedbackState extends State<ViewFeedback> {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            "Student ID : ${feedback.studentId}",
+                            "${AppStrings.get(context, "student_id")} : ${feedback.studentId}",
                             style: GoogleFonts.poppins(
                               fontWeight: FontWeight.w500,
                               fontSize: 13,
@@ -183,12 +186,25 @@ class _ViewFeedbackState extends State<ViewFeedback> {
                               ),
                               const SizedBox(width: 8),
                               Expanded(
-                                child: Text(
-                                  feedback.remark!,
-                                  style: GoogleFonts.poppins(
-                                    color: Colors.green.shade800,
-                                    fontSize: 13,
-                                  ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      AppStrings.get(context, "remark"),
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.green.shade800,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      feedback.remark!,
+                                      style: GoogleFonts.poppins(
+                                        color: Colors.green.shade800,
+                                        fontSize: 13,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],

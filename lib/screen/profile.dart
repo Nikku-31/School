@@ -96,7 +96,7 @@ class _EditProfileState extends State<EditProfile> {
                                        : (student.studentPhoto.isNotEmpty)
                                        ? Image.network(
                                      "https://dbs.online-tech.in${student.studentPhoto}", // Base URL + /StudentsFiles/...
-                                     fit: BoxFit.cover,
+                                     fit: BoxFit.contain,
                                      loadingBuilder: (context, child, loadingProgress) {
                                        if (loadingProgress == null) return child;
                                        return const Center(

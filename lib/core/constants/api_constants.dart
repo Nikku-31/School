@@ -20,6 +20,7 @@ class ApiConstants {
 
   static const String UpComingClassess = "$baseUrl/api/StudentApi/UpComingClassess";
   static const String saveStudentFeedback = "$baseUrl/api/StudentApi/SaveStudentFeedback";
+  static const String ViewFeedback = "$baseUrl/api/StudentApi/ViewFeedback";
   // Event API
   static const String getEventCalendar = "$baseUrl/GetEventCalendar";
   //MAster apis
